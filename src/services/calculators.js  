@@ -1,0 +1,16 @@
+// Pricing calculators for each service
+
+export function calculateAppCreatorPrice(users, months) {
+  const pricePerUser = 50;
+  return users * months * pricePerUser;
+}
+
+export function calculateEmailOutreachPrice(emailsSent, months) {
+  const pricePerEmail = 0.1;
+  return emailsSent * months * pricePerEmail;
+}
+
+export function calculateSocialMediaPrice(posts, months) {
+  const pricePerPost = 20;
+  return posts * months * pricePerPost;
+}

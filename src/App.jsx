@@ -1,33 +1,43 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import HappyPeopleSection from "./components/HappyPeopleSection";
+import CallToAction from "./components/CallToAction";
 
 import Home from "./pages/Home";
 import AppCreator from "./pages/AppCreator";
 import EmailOutreach from "./pages/EmailOutreach";
 import SocialMedia from "./pages/SocialMedia";
+import GetAdvice from "./pages/GetAdvice";
 import Contact from "./pages/Contact";
 
-function App() {
+const pages = {
+  Home,
+  "App Creator": AppCreator,
+  "Email Outreach": EmailOutreach,
+  "Social Media": SocialMedia,
+  "Get Advice": GetAdvice,
+  Contact,
+};
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState("Home");
+  const PageComponent = pages[activeTab];
+
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col bg-pink-50 text-pink-900">
-        <Navbar />
-        <main className="flex-grow container mx-auto px-4 py-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/app-creator" element={<AppCreator />} />
-            <Route path="/email-outreach" element={<EmailOutreach />} />
-            <Route path="/social-media" element={<SocialMedia />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", backgroundColor: "#fff0f6", color: "#ad1457" }}>
+      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {activeTab === "Home" && <HappyPeopleSection />}
+
+      <main style={{ flex: 1 }}>
+        <PageComponent />
+      </main>
+
+      <CallToAction />
+
+      <Footer />
+    </div>
   );
 }
-
-export default App;

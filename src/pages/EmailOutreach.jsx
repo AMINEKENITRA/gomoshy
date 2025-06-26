@@ -1,16 +1,34 @@
 import React from "react";
-import ServiceSimulator from "../components/ServiceSimulator";
-import VideoAnimation from "../components/VideoAnimation";
-import HappyPeopleSection from "../components/HappyPeopleSection";
-import emailOutreachVideo from "../assets/videos/email-outreach.mp4";
+import PricingSimulator from "../components/PricingSimulator";
+import { calculateEmailOutreachPrice } from "../services/calculators";
 
 export default function EmailOutreach() {
   return (
-    <>
-      <h1 className="text-3xl font-bold mb-4 text-pink-900">Email Outreach Manager</h1>
-      <VideoAnimation src={emailOutreachVideo} alt="Email Outreach Demo" />
-      <ServiceSimulator basePrice={300} pricePerUnit={50} unitName="email campaigns" />
-      <HappyPeopleSection />
-    </>
+    <section
+      style={{
+        padding: "3rem 2rem",
+        textAlign: "center",
+        backgroundColor: "#f8bbd0",
+      }}
+    >
+      <h2>Email Outreach Manager</h2>
+      <img
+        src="/assets/email-outreach.png"
+        alt="Email Outreach Manager service"
+        style={{
+          maxWidth: "400px",
+          marginBottom: "1rem",
+          borderRadius: "12px",
+          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+        }}
+      />
+      <PricingSimulator
+        calculatePrice={calculateEmailOutreachPrice}
+        inputs={[
+          { name: "emailsSent", label: "Emails sent per month", min: 1, defaultValue: 1000 },
+          { name: "months", label: "Months", min: 1, defaultValue: 1 },
+        ]}
+      />
+    </section>
   );
 }

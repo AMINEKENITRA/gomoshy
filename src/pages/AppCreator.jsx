@@ -1,16 +1,34 @@
 import React from "react";
-import ServiceSimulator from "../components/ServiceSimulator";
-import VideoAnimation from "../components/VideoAnimation";
-import HappyPeopleSection from "../components/HappyPeopleSection";
-import appCreatorVideo from "../assets/videos/app-creator.mp4";
+import PricingSimulator from "../components/PricingSimulator";
+import { calculateAppCreatorPrice } from "../services/calculators";
 
 export default function AppCreator() {
   return (
-    <>
-      <h1 className="text-3xl font-bold mb-4 text-pink-900">App Creator</h1>
-      <VideoAnimation src={appCreatorVideo} alt="App Creator Demo" />
-      <ServiceSimulator basePrice={500} pricePerUnit={100} unitName="features" />
-      <HappyPeopleSection />
-    </>
+    <section
+      style={{
+        padding: "3rem 2rem",
+        textAlign: "center",
+        backgroundColor: "#f8bbd0",
+      }}
+    >
+      <h2>App Creator</h2>
+      <img
+        src="/assets/app-creator.png"
+        alt="App Creator service"
+        style={{
+          maxWidth: "400px",
+          marginBottom: "1rem",
+          borderRadius: "12px",
+          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+        }}
+      />
+      <PricingSimulator
+        calculatePrice={calculateAppCreatorPrice}
+        inputs={[
+          { name: "users", label: "Number of users", min: 1, defaultValue: 1 },
+          { name: "months", label: "Months", min: 1, defaultValue: 1 },
+        ]}
+      />
+    </section>
   );
 }

@@ -1,36 +1,63 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/app-creator", label: "App Creator" },
-  { to: "/email-outreach", label: "Email Outreach" },
-  { to: "/social-media", label: "Social Media" },
-  { to: "/contact", label: "Contact" },
+const pink = "#e91e63";
+const lightPink = "#f8bbd0";
+const darkPink = "#ad1457";
+
+const tabs = [
+  "Home",
+  "App Creator",
+  "Email Outreach",
+  "Social Media",
+  "Get Advice",
+  "Contact",
 ];
 
-export default function Navbar() {
+export default function Navbar({ activeTab, setActiveTab }) {
   return (
-    <nav className="bg-pink-200 shadow-md">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="text-2xl font-bold text-pink-700">Gomoshy</div>
-        <ul className="flex space-x-6">
-          {links.map(({ to, label }) => (
-            <li key={to}>
-              <NavLink
-                to={to}
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-pink-900 font-semibold border-b-2 border-pink-700"
-                    : "text-pink-700 hover:text-pink-900"
-                }
-              >
-                {label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+    <nav
+      style={{
+        backgroundColor: pink,
+        padding: "1rem 2rem",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
+      }}
+    >
+      <div style={{ fontWeight: "bold", fontSize: "1.5rem", color: "white", cursor: "default" }}>
+        Gomoshy
       </div>
+      <ul
+        style={{
+          listStyle: "none",
+          display: "flex",
+          gap: "1.5rem",
+          margin: 0,
+          padding: 0,
+        }}
+      >
+        {tabs.map((tab) => (
+          <li
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            style={{
+              cursor: "pointer",
+              color: activeTab === tab ? darkPink : "white",
+              backgroundColor: activeTab === tab ? lightPink : "transparent",
+              padding: "0.5rem 1rem",
+              borderRadius: "5px",
+              fontWeight: activeTab === tab ? "bold" : "normal",
+              transition: "all 0.3s ease",
+              userSelect: "none",
+            }}
+          >
+            {tab}
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }
