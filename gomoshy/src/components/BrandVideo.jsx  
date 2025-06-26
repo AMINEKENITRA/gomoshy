@@ -1,0 +1,13 @@
+import React from "react";
+import brandVideo from "../assets/videos/gomoshy-brand.mp4";
+
+export default function BrandVideo() {
+  return (
+    <section className="my-12 max-w-3xl mx-auto">
+      <video controls muted loop playsInline className="rounded-lg shadow-lg w-full h-auto">
+        <source src={brandVideo} type="video/mp4" />
+        Sorry, your browser does not support the video tag.
+      </video>
+    </section>
+  );
+}
