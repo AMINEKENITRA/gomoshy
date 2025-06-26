@@ -1,6 +1,4 @@
-# netlify.toml at root /workspaces/gomoshy
-
 [build]
-base = "gomoshy"
-publish = "gomoshy/dist"
-command = "npm run build"
+  base = "gomoshy"
+  publish = "dist"
+  command = "npm run build"
